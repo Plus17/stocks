@@ -67,6 +67,7 @@ defmodule Stocks.MixProject do
 
       # Testing
       {:ex_machina, "~> 2.7.0", only: [:dev, :test]},
+      {:mox, "~> 1.0", only: :test},
 
       # Auth
       {:nimble_totp, "~> 0.1.0"},
