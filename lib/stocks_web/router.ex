@@ -20,7 +20,7 @@ defmodule StocksWeb.Router do
   scope "/", StocksWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", TickerLive.Index, :index
   end
 
   # Other scopes may use custom stacks.
