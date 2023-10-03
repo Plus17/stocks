@@ -5,6 +5,19 @@ defmodule Stocks.Schemas.Tickers.Ticker do
   use Stocks.Schema
   import Ecto.Changeset
 
+  @type t :: %__MODULE__{
+          id: Ecto.UUID.t() | nil,
+          requested_at: DateTime.t(),
+          symbol: String.t(),
+          close: Decimal.t(),
+          high: Decimal.t(),
+          low: Decimal.t(),
+          open: Decimal.t(),
+          volume: integer(),
+          inserted_at: DateTime.t() | nil,
+          updated_at: DateTime.t() | nil
+        }
+
   schema "tickers" do
     field :requested_at, :utc_datetime
     field :symbol, :string
