@@ -50,5 +50,15 @@ defmodule Stocks.Contexts.Stocks.StockFinderTest do
       assert ticker.symbol == expected_data.symbol
       assert ticker.volume == expected_data.volume
     end
+
+    test "when ticker does not exists returns error" do
+      expect(StooqClientMock, :fetch_stock_data, fn ticker ->
+        assert ticker == "BAD"
+
+        {:error, :invalid_ticker}
+      end)
+
+      assert StockFinder.find_stock("BAD") == {:error, :invalid_ticker}
+    end
   end
 end
