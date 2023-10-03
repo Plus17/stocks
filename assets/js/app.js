@@ -22,8 +22,33 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
+let Hooks = {}
+
+Hooks.ChartHook = {
+  mounted() {
+    this.chart = new Chart(this.el, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          data: [],
+          label: "Stock Price",
+          borderColor: "#3e95cd",
+          fill: false
+        }]
+      }
+    });
+  },
+  updated() {
+    let new_data = this.el.dataset;
+    this.chart.data.labels = new_data.dates.split(",");
+    this.chart.data.datasets[0].data = new_data.prices.split(",");
+    this.chart.update();
+  }
+}
+
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}})
 
 // Show progress bar on live navigation and form submits
 topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
