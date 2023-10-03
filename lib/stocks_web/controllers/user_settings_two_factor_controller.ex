@@ -7,9 +7,7 @@ defmodule StocksWeb.UserSettingsTwoFactorController do
     secret = NimbleTOTP.secret()
 
     uri =
-      NimbleTOTP.otpauth_uri("Stocks:#{conn.assigns.current_user.email}", secret,
-        issuer: "Stocks"
-      )
+      NimbleTOTP.otpauth_uri("Stocks:#{conn.assigns.current_user.email}", secret, issuer: "Stocks")
 
     conn
     |> put_session(:totp_secret, secret)

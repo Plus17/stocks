@@ -12,7 +12,9 @@ defmodule Stocks.HTTP.StooqSpec do
 
   @type base_url :: String.t()
 
-  @type req_error :: {:error, :invalid_ticker | {:transport_error, any} | {:unexpected_status_code, non_neg_integer}}
+  @type req_error ::
+          {:error,
+           :invalid_ticker | {:transport_error, any} | {:unexpected_status_code, non_neg_integer}}
 
   @doc """
   Fetches stock data for the given ticker.

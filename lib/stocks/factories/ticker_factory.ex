@@ -1,5 +1,3 @@
-
-
 defmodule Stocks.TickerFactory do
   @moduledoc """
   This module defines test helpers for creating
@@ -18,7 +16,7 @@ defmodule Stocks.TickerFactory do
           low: 389.97,
           open: 391.9,
           symbol: "VOO.US",
-          volume: 5878250
+          volume: 5_878_250
         }
       end
     end

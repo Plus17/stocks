@@ -19,7 +19,8 @@ defmodule Stocks.HTTP.StooqClient do
   @default_opts [format: "json"]
 
   @impl true
-  @spec fetch_stock_data(String.t(), StooqSpec.ticker(), Keyword.t() | nil) :: {:ok, Ticker.t()} | StooqSpec.req_error()
+  @spec fetch_stock_data(String.t(), StooqSpec.ticker(), Keyword.t() | nil) ::
+          {:ok, Ticker.t()} | StooqSpec.req_error()
   def fetch_stock_data(base_url, ticker, opts \\ @default_opts) do
     format = Keyword.get(opts, :format, "json")
     url = "#{base_url}?s=#{ticker}.us&f=sd2t2ohlcv&h&e=#{format}"
