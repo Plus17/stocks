@@ -13,7 +13,7 @@ defmodule Stocks do
       config :app_name, :seeds, admin_password: System.fetch_env!("ADMIN_PASSWORD")
       iex> AppName.config([:seeds, :admin_password])
   """
-  @spec config!(Keyword.t()) :: any()
+  @spec config!([atom()]) :: any()
   def config!([main_key | rest] = keyspace) do
     main = Application.fetch_env!(:stocks, main_key)
 
