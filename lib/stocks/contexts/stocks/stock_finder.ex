@@ -20,7 +20,18 @@ defmodule Stocks.Contexts.Stocks.StockFinder do
     end
   end
 
-  def stock_client!() do
+  @doc """
+  Fetches historical data for a stock.
+  ## Examples
+      iex> fetch_historical_data("AAPL")
+      [%Ticker{}, ...]
+  """
+  @spec fetch_historical_data(String.t()) :: [Ticker.t()]
+  def fetch_historical_data(ticker) do
+    TickerManager.list(symbol: "#{ticker}.US")
+  end
+
+  defp stock_client!() do
     Stocks.config!([:stock_client])
   end
 

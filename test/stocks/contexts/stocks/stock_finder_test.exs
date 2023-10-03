@@ -57,5 +57,14 @@ defmodule Stocks.Contexts.Stocks.StockFinderTest do
     end
   end
 
+  describe "fetch_historical_data/1" do
+    test "returns rows for ticker" do
+      insert(:ticker, symbol: "VOO.US")
+      ticker = insert(:ticker, symbol: "AAPL.US")
+
+      assert StockFinder.fetch_historical_data("AAPL") == [ticker]
+    end
+  end
+
   defp base_url(port), do: "http://localhost:#{port}/q/l/"
 end
