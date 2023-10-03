@@ -7,9 +7,19 @@ defmodule Stocks.Contexts.Tickers.TickerManagerTest do
 
   @invalid_attrs %{requested_at: nil, symbol: nil}
 
-  test "list/0 returns all tickers" do
-    ticker = insert(:ticker)
-    assert TickerManager.list() == [ticker]
+  describe "list/0" do
+    test "returns all tickers" do
+      ticker = insert(:ticker)
+      assert TickerManager.list() == [ticker]
+    end
+
+    test "returns tickers filtered by given filters" do
+      [ticker | _tail] = insert_list(3, :ticker)
+      insert(:ticker, symbol: "AAPL")
+      tickers = TickerManager.list(symbol: ticker.symbol)
+
+      assert length(tickers) == 3
+    end
   end
 
   test "get!/1 returns the ticker with given id" do

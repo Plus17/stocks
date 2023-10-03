@@ -14,8 +14,10 @@ defmodule Stocks.Managers.Tickers.TickerManager do
       iex> list()
       [%Ticker{}, ...]
   """
-  def list do
-    Repo.all(Ticker)
+  def list(filters \\ []) do
+    Ticker
+    |> where([t], ^filters)
+    |> Repo.all()
   end
 
   @doc """
