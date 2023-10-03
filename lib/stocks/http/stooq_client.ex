@@ -16,14 +16,13 @@ defmodule Stocks.HTTP.StooqClient do
 
   alias Stocks.Managers.Tickers.TickerManager
 
-  @base_url "https://stooq.com/q/l/"
   @default_opts [format: "json"]
 
   @impl true
-  @spec fetch_stock_data(StooqSpec.ticker(), Keyword.t() | nil) :: {:ok, Ticker.t()} | StooqSpec.req_error()
-  def fetch_stock_data(ticker, opts \\ @default_opts) do
+  @spec fetch_stock_data(String.t(), StooqSpec.ticker(), Keyword.t() | nil) :: {:ok, Ticker.t()} | StooqSpec.req_error()
+  def fetch_stock_data(base_url, ticker, opts \\ @default_opts) do
     format = Keyword.get(opts, :format, "json")
-    url = "#{@base_url}?s=#{ticker}.us&f=sd2t2ohlcv&h&e=#{format}"
+    url = "#{base_url}?s=#{ticker}.us&f=sd2t2ohlcv&h&e=#{format}"
 
     case Req.get(url) do
       {:ok, %Req.Response{status: 200, body: body}} ->
