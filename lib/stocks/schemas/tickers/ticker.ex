@@ -34,6 +34,7 @@ defmodule Stocks.Schemas.Tickers.Ticker do
   @optional []
 
   @doc false
+  @spec changeset(t(), map()) :: Ecto.Changeset.t()
   def changeset(ticker, attrs) do
     ticker
     |> cast(attrs, @required ++ @optional)

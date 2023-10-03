@@ -13,7 +13,7 @@ defmodule Stocks.Contexts.Stocks.StockFinder do
       iex> find_stock("BAD")
       {:error, :invalid_ticker}
   """
-  @spec find_stock(String.t()) :: {:ok, map()} | {:error, any()}
+  @spec find_stock(String.t(), String.t() | nil) :: {:ok, map()} | {:error, any()}
   def find_stock(ticker, base_url \\ get_base_url()) do
     with {:ok, stock} <- stock_client!().fetch_stock_data(base_url, ticker) do
       TickerManager.insert(stock)

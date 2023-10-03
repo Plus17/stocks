@@ -14,6 +14,7 @@ defmodule Stocks.Managers.Tickers.TickerManager do
       iex> list()
       [%Ticker{}, ...]
   """
+  @spec list(Keyword.t() | nil) :: [Ticker.t()] | []
   def list(filters \\ []) do
     Ticker
     |> where([t], ^filters)
@@ -29,6 +30,7 @@ defmodule Stocks.Managers.Tickers.TickerManager do
       iex> get!(456)
       ** (Ecto.NoResultsError)
   """
+  @spec get!(binary()) :: Ticker.t()
   def get!(id), do: Repo.get!(Ticker, id)
 
   @doc """
@@ -39,6 +41,7 @@ defmodule Stocks.Managers.Tickers.TickerManager do
       iex> create(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
   """
+  @spec create(map() | nil) :: {:ok, Ticker.t()} | {:error, Ecto.Changeset.t()}
   def create(attrs \\ %{}) do
     %Ticker{}
     |> Ticker.changeset(attrs)
@@ -53,6 +56,7 @@ defmodule Stocks.Managers.Tickers.TickerManager do
       iex> insert(%Ticker{})
       {:error, %Ecto.Changeset{}}
   """
+  @spec insert(Ticker.t()) :: {:ok, Ticker.t()} | {:error, Ecto.Changeset.t()}
   def insert(%Ticker{} = ticker) do
     Repo.insert(ticker)
   end
@@ -63,6 +67,7 @@ defmodule Stocks.Managers.Tickers.TickerManager do
       iex> change(ticker)
       %Ecto.Changeset{data: %Ticker{}}
   """
+  @spec change(Ticker.t(), map() | nil) :: Ecto.Changeset.t()
   def change(%Ticker{} = ticker, attrs \\ %{}) do
     Ticker.changeset(ticker, attrs)
   end
