@@ -33,6 +33,7 @@ defmodule StocksWeb.TickerLiveTest do
 
       html = render(index_live)
       assert html =~ "9999"
+
       for ticker <- tickers do
         assert html =~ ticker.id
       end
