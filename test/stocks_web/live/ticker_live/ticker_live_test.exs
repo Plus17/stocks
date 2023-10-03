@@ -23,7 +23,7 @@ defmodule StocksWeb.TickerLiveTest do
         {:ok, build(:ticker, close: Decimal.new("9999"))}
       end)
 
-      {:ok, index_live, _html} = live(conn, ~p"/stocks")
+      {:ok, index_live, _html} = live(conn, ~p"/")
 
       assert index_live
              |> form("#ticker-form", ticker: "VOO")
