@@ -44,6 +44,18 @@ defmodule Stocks.Managers.Tickers.TickerManager do
   end
 
   @doc """
+  Inserts a ticker struct.
+  ## Examples
+      iex> insert(%Ticker{})
+      {:ok, %Ticker{}}
+      iex> insert(%Ticker{})
+      {:error, %Ecto.Changeset{}}
+  """
+  def insert(%Ticker{} = ticker) do
+    Repo.insert(ticker)
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking ticker changes.
   ## Examples
       iex> change(ticker)

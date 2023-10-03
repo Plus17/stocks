@@ -41,6 +41,16 @@ defmodule Stocks.Contexts.Tickers.TickerManagerTest do
     end
   end
 
+  describe "insert/1" do
+    test "with valid data inserts a ticker" do
+      ticker = build(:ticker)
+
+      assert {:ok, %Ticker{} = inserted_ticker} = TickerManager.insert(ticker)
+      assert inserted_ticker.requested_at == ticker.requested_at
+      assert inserted_ticker.close == ticker.close
+    end
+  end
+
   test "change/1 returns a ticker changeset" do
     ticker = insert(:ticker)
     assert %Ecto.Changeset{} = TickerManager.change(ticker)

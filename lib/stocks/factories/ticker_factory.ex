@@ -12,7 +12,7 @@ defmodule Stocks.TickerFactory do
     quote do
       def ticker_factory() do
         %Ticker{
-          requested_at: ~N[2023-10-01 23:21:00],
+          requested_at: ~U[2023-10-01 23:21:00Z],
           close: 392.67,
           high: 393.7599,
           low: 389.97,
