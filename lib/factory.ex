@@ -6,6 +6,7 @@ defmodule Stocks.Factory do
   use ExMachina.Ecto, repo: Stocks.Repo
 
   use Stocks.UserFactory
+  use Stocks.TickerFactory
 
   def valid_user_password, do: "hello world!"
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
