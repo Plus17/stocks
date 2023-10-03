@@ -70,7 +70,10 @@ defmodule Stocks.MixProject do
 
       # Auth
       {:nimble_totp, "~> 0.1.0"},
-      {:eqrcode, "~> 0.1.10"}
+      {:eqrcode, "~> 0.1.10"},
+
+      # HTTP
+      {:req, "~> 0.4.0"}
     ]
   end
 
