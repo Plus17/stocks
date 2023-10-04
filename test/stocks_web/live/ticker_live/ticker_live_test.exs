@@ -38,5 +38,21 @@ defmodule StocksWeb.TickerLiveTest do
         assert html =~ ticker.id
       end
     end
+
+    test "shows error if ticker is invalid", %{conn: conn} do
+      expect(Stocks.HTTP.StooqClientMock, :fetch_stock_data, fn _url, ticker ->
+        assert ticker == "APLL"
+
+        {:error, :invalid_ticker}
+      end)
+
+      {:ok, index_live, _html} = live(conn, ~p"/")
+
+      assert index_live
+             |> form("#ticker-form", ticker: "APLL")
+             |> render_submit()
+
+      assert render(index_live) =~ "Invalid ticker"
+    end
   end
 end
