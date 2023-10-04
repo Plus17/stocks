@@ -40,3 +40,45 @@ Visit [`localhost:4000`](http://localhost:4000) from your browser.
 ![image](https://github.com/Plus17/stocks/assets/8551125/220864ac-bac8-473e-bd79-0f2a1f28102f)
 
 ![image](https://github.com/Plus17/stocks/assets/8551125/3251ff3f-9ac9-4edf-bdcc-a5c8a1cac53f)
+
+## Basic module interaction
+
+
+### Get ticker data
+
+```
+                                                        ┌──────────────────┐ 
+                                                        │                  │ 
+                                                        │   StooqClient    │ 
+                                                        │                  │ 
+                                     ┌─────────────────▶│fetch_stock_data/3│ 
+                                     │                  │                  │ 
+                                     │                  │                  │ 
+┌──────────────────┐                 │                  └──────────────────┘ 
+│                  │                 │                                       
+│   TickerFinder   │                 │                                       
+│                  │─────────────────┤                                       
+│   find_stock/2   │                 │                                       
+│                  │                 │                                       
+└──────────────────┘                 │                                       
+                                     │                                       
+                                     │                  ┌───────────────────┐
+                                     │                  │                   │
+                                     │                  │   TickerManager   │
+                                     └─────────────────▶│                   │
+                                                        │     insert/1      │
+                                                        │                   │
+                                                        └───────────────────┘
+```
+
+### Get historical data for ticker
+
+```
+┌───────────────────────────┐       ┌─────────────────────┐
+│                           │       │                     │
+│       TickerFinder        │       │    TickerManager    │
+│                           │──────▶│                     │
+│  fetch_historical_data/1  │       │       list/1        │
+│                           │       │                     │
+└───────────────────────────┘       └─────────────────────┘
+```
